@@ -1,0 +1,19 @@
+<% if @post.errors.any? %>
+  <%= @post.errors.count %>件のエラ〜あり
+  <% @post.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+  <% end %>
+<% end %>
+
+<h1>投稿画面</h1>
+<%= form_with model: @post do |f| %>
+  <label for="name">バイク名</label><br>
+  <%= f.text_field :bike,placeholder:"バイク名を記載してください",id:"name" %><br>
+  <label>画像</label><br>
+  <%= f.file_field :image,accept:"image/*" %><br>
+  <label for="opinion">おすすめなところ</label><br>
+  <%= f.text_area :opinion,placeholder:"おすすめな点を記入してください" %><br>
+  <label for="price">希望価格</label><br>
+  <%= f.text_field :price %><br>
+  <%= f.submit"投稿" %>
+<% end %>
